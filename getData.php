@@ -1,7 +1,7 @@
 <?php
 	session_start();
 	include "dbcon.php";
-	$ids =  $_SESSION['id'];
+	$ids =  $_SESSION['id_tab_user'];
 	$req = $_POST['req'];
 
 	if ($req=='1') {

@@ -1,11 +1,7 @@
 <?php 
     session_start();
     include "dbcon.php";
-    $_SESSION['id']=2;
-    $idUser = 2;
-    $qrUser = "SELECT * from user where id_tab_user = ".$idUser." ";
-    $getUser = mysql_query($qrUser);
-    $resultUser=mysql_fetch_array($getUser);
+    
 ?>
 
 <html>
@@ -30,9 +26,6 @@
 
                 var myLat;
                 var myLng;
-                
-
-                //var follower = me.concat(reqData('<?php echo  $idUser;?>'));
 
                 L.mapbox.accessToken = 'pk.eyJ1IjoicmlmcWl0aG9taSIsImEiOiJpUjFieHdVIn0.Cz3ME0XeH01-5IRnCJl3SA';
                 var map = L.mapbox.map('map', 'rifqithomi.jb5ibjeg')
@@ -40,11 +33,12 @@
                     
                 var myLayer = L.mapbox.featureLayer().addTo(map);
                 myLayer.on('layeradd', function(e) {
+
                     var marker = e.layer,
                         feature = marker.feature;
 
                     // Create custom popup content
-                    var popupContent =  e.layer.feature.properties.nama;
+                    var popupContent =  e.layer.feature.properties.status;
 
                     // http://leafletjs.com/reference.html#popup
                     marker.setIcon(L.icon(feature.properties.icon));
@@ -55,38 +49,38 @@
                     e.layer.feature.geometry.coordinates.reverse();
                 });
 
-                    
-                    
-                    
-
-
                     map.locate();
-                    var k = setInterval(function(){map.locate();},3000);
-                    
+                    var throwLocate = setInterval(function(){map.locate();},3000);
+
                     map.on('locationfound', function(e){
                         var myLat = e.latlng.lat;
                         var myLng = e.latlng.lng;
-                        var idUser = "<?php echo $idUser;?>";
                         var me = reqData('1');
                         var datas = me.concat(reqData('2'));
-                        
-                        myLayer.setGeoJSON(datas);
-                        //var t = setInterval(function(){update(myLat,myLng,idUser)},4000);
-                        /*var l = setInterval(function(){
-                                                        myLat = myLat - 0.2;
-                                                        myLng = myLng + 0.3;
-                                                        me.geometry.coordinates[1] = myLat;
-                                                        me.geometry.coordinates[0] = myLng;
-                                                    },5000);*/
-                        /*var p = setInterval(function(){
-                                                        myLayer.setGeoJSON(datas);
-                                                         console.log(datas);
-                                                        },5000);*/
 
+                        myLayer.setGeoJSON(datas);
+                        var throwUpdate = setInterval(function(){
+                            update(myLat,myLng,"<?php echo $_SESSION['id_tab_user'];?>")
+                        },4000);
+
+                        var throwData = setInterval(function(){
+                            var me = reqData('1');
+                            var datas = me.concat(reqData('2'));
+                            myLayer.setGeoJSON(datas);
+                        },6000);;
+                        
                     });
                     map.on('locationerror', function() {
                         alert('Posisi Anda Tidak Dapat Ditemukan');
                     });
+
+                    myLayer.on('mouseover', function(e) {
+                        e.layer.openPopup();
+                    });
+                    myLayer.on('mouseout', function(e) {
+                        e.layer.closePopup();
+                    });
+
 
 
 
@@ -105,7 +99,6 @@
                                 var s = JSON.parse(data);   
                                 myLat = s.lat;
                                 myLng = s.ln;
-                                //console.log(myLat+' '+myLng);
                            }
 
                         });                        

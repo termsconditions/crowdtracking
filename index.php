@@ -42,7 +42,7 @@ if(isset($_SESSION['nik']))
 
       <form class="form-signin" name="login" action="login.php" autocomplete='off' role="form" method="post">
         <h2 class="form-signin-heading">Please sign in</h2>
-        <input name="nik" id="nik" type="text" class="form-control" placeholder="NIK" required autofocus>
+        <input name="username" id="nik" type="text" class="form-control" placeholder="NIK" required autofocus>
         <input name="pass" id="pass" type="password" class="form-control" placeholder="Password" required>
         <!--label class="checkbox">
           <input type="checkbox" value="remember-me"> Remember me

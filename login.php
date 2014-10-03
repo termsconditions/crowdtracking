@@ -2,28 +2,35 @@
 	session_start();
 	include 'dbcon.php';
 
-	$email = $_POST['username'];
-	$pass = md5($_POST['pass']);
+	$username = $_POST['username'];
+	$pass = ($_POST['pass']);
 
-	$qrlogin = "SELECT id_tab_user, email, nama_depan, nama_belakang,login_time,nama_file_profile, checkin_time,tanggal_gabung FROM user where email = '".$email."' AND password = '".$pass."'";
+	$qrlogin = "SELECT 
+						id_tab_user,
+						username, 
+						lat, 
+						lng,
+						nama, 
+						status,
+						photo 
+					FROM user 
+					where username = '".$username."' AND password = '".$pass."'";
 	$getUser = mysql_query($qrlogin);
 	$result=mysql_fetch_array($getUser);
 	$count=mysql_num_rows($getUser);
 	if($count == 1)
 	{
-		$_SESSION['email']=$result['email'];
-		$_SESSION['fname']=$result['nama_depan'];
-		$_SESSION['lname']=$result['nama_belakang'];
-		$_SESSION['checkin_time']=$result['checkin_time'];
-		$_SESSION['tanggal_gabung']=$result['tanggal_gabung'];
-		$_SESSION['login_time']=$result['login_time']+1;
+		$_SESSION['username']=$result['username'];
+		$_SESSION['lat']=$result['lat'];
+		$_SESSION['lng']=$result['lng'];
+		$_SESSION['nama']=$result['nama'];
+		$_SESSION['status']=$result['status'];
 		$_SESSION['id_tab_user']=$result['id_tab_user'];
-		$_SESSION['nama_file_profile']=$result['nama_file_profile'];
-		$qrTime = "UPDATE user SET login_time = ".$result['login_time']."+1 WHERE id_tab_user = ".$result['id_tab_user']." ";
-		$resultLogin =  mysql_query($qrTime);
-		if($resultLogin){
-			header("location:index.php");	
-		}
+		$_SESSION['photo']=$result['photo'];
+		
+		
+			header("location:main.php");	
+		
 		
 	}
 	else
