@@ -1,0 +1,102 @@
+ html {
+    overflow-y:scroll;
+}
+ header
+      {
+        padding-left: 20px;
+        padding-top: 0;
+        padding-right: 20px;
+        padding-bottom: 0px;
+        min-width: 1280px;
+        min-height: 130px;
+        background:url("assets/images/header.png") repeat;
+      }
+      nav
+      {
+        padding-left: 20px;
+        padding-top: 0;
+        padding-right: 20px;
+        padding-bottom: 0px;
+        min-width: 1200px;
+        min-height: 30px;
+        background: cyan;
+      }
+      .container
+      {
+        width: 970px;
+        
+      }
+      .logo
+      {
+        padding: 10px 20px;
+        float:left;
+        z-index: 9999;
+        width: 440px;
+        height: 88px;
+      }
+      .login
+      {
+        height: 80px;
+        width: 300px;
+        float:right;
+        padding: 10px 20px;
+        background: green;
+        margin-top: 10px;
+      }
+      .user
+      {
+        margin-bottom:10px;
+      }
+      .content
+      {
+        margin-top: 20px;
+        padding-left: 20px;
+        padding-top: 0;
+        padding-right: 20px;
+        padding-bottom: 0px;
+        min-width: 1200px;
+        
+      }
+      .fitur
+      {
+        margin-top: 20px;
+        margin-bottom: 30px;
+        padding-left: 20px;
+        padding-top: 0;
+        padding-right: 20px;
+        padding-bottom: 0px;
+        min-width: 1200px;
+       
+      }
+
+      .partner-item {
+          padding-left: 20px;
+          padding-top: 30px;
+          padding-bottom: 30px;
+      }
+
+      .partner-item img {
+          display: block;
+          margin: 0 auto;
+      }
+
+      .partner-item.last {
+          padding-left: 0;
+      }
+
+      footer
+      {
+        padding-left: 20px;
+        padding-top: 0;
+        padding-right: 20px;
+        padding-bottom: 0px;
+        min-width: 1200px;
+        min-height: 86px;
+        background: red;
+        bottom: 0;
+      }
+      a:focus,a:hover
+      {
+        outline: none;
+      }
+      
