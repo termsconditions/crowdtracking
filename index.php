@@ -20,6 +20,13 @@ if(isset($_SESSION['nik']))
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <style type="text/css">
+      body{
+        background: url("assets/images/bg.png") no-repeat;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+      }
       #footer {
         position: absolute;
         bottom: 0;

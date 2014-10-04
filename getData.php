@@ -87,6 +87,20 @@
 		}
 		echo json_encode($hasilss);//, JSON_NUMERIC_CHECK);	
 	}
+	elseif ($req=='3') {
+		$qrGetChat = "SELECT isi, tanggal
+						FROM chat
+						WHERE user1 = ".$ids." AND user2 = ".$_POST['ids']."
+							";
+		$getChat = mysql_query($qrGetChat);
+		while ($resultComment = mysql_fetch_assoc($getChat)) {
+			?>
+				<div style="margin-bottom:10px;">
+					<span style='margin-top:-20px;'><?php echo $resultComment['isi'];?></span>
+				</div>
+			<?php
+		}
+	}
 
 	
 ?>
